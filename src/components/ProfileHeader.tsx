@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { ABDU_AVATAR_DATA_URL, ABDU_AVATAR_PATH } from '../avatarData';
 
 interface ProfileHeaderProps {
   onShare: () => void;
@@ -6,7 +7,7 @@ interface ProfileHeaderProps {
 }
 
 export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare, onViewCode }) => {
-  const [avatarSrc, setAvatarSrc] = useState<string>('/me.jpg');
+  const [avatarSrc, setAvatarSrc] = useState<string>(ABDU_AVATAR_DATA_URL || ABDU_AVATAR_PATH);
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -36,6 +37,14 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare, onViewCod
       }
     };
     reader.readAsDataURL(file);
+  };
+
+  const handleImageError = () => {
+    if (avatarSrc !== ABDU_AVATAR_DATA_URL) {
+      setAvatarSrc(ABDU_AVATAR_DATA_URL);
+    } else {
+      setHasImageError(true);
+    }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -99,15 +108,15 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare, onViewCod
           <button
             type="button"
             onClick={onViewCode}
-            aria-label="View Standalone Code"
-            title="Inspect & Copy Clean HTML/CSS"
+            aria-label="View HTML, CSS and JavaScript Code"
+            title="Inspect, Copy & Download HTML, CSS and JavaScript"
             className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[#a3a3a3] hover:text-[#ffffff] bg-[#161a22] hover:bg-[#1d222c] border border-white/5 hover:border-[#f0b90b]/30 rounded-lg transition-all duration-200 micro-press"
           >
-            <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <svg className="w-3.5 h-3.5 text-[#f0b90b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="16 18 22 12 16 6" />
               <polyline points="8 6 2 12 8 18" />
             </svg>
-            <span>Clean Code</span>
+            <span>HTML • CSS • JS</span>
           </button>
 
           <button
@@ -146,7 +155,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare, onViewCod
               alt="ABDU - Brand Designer"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover rounded-full select-none"
-              onError={() => setHasImageError(true)}
+              onError={handleImageError}
             />
           ) : (
             <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1d222c] to-[#12151b] text-[#ffffff]">
