@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   STRICT DESIGN SYSTEM SPECIFICATION
+   Color Palette:
+   - Background: #0c0e12
+   - Card Default: #161a22
+   - Card Hover: #1d222c
+   - Accent: #f0b90b
+   - Text Primary: #ffffff
+   - Text Secondary: #a3a3a3
+   - Subtle Border: rgba(255, 255, 255, 0.06)
+   ========================================================================== */
+
+:root {
+  --bg-primary: #0c0e12;
+  --card-default: #161a22;
+  --card-hover: #1d222c;
+  --accent: #f0b90b;
+  --text-primary: #ffffff;
+  --text-secondary: #a3a3a3;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --border-card-hover: rgba(240, 185, 11, 0.35);
+  --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Inter", "Helvetica Neue", Arial, sans-serif;
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-snappy: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  font-family: var(--font-stack);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  selection-background-color: var(--accent);
+  selection-color: var(--bg-primary);
+}
+
+::selection {
+  background-color: rgba(240, 185, 11, 0.25);
+  color: #ffffff;
+}
+
+/* Custom Scrollbar adhering to palette */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--card-default);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--card-hover);
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY & KERNING
+   -------------------------------------------------------------------------- */
+.kerning-tight-hero {
+  letter-spacing: -0.04em;
+}
+
+.kerning-tight-heading {
+  letter-spacing: -0.025em;
+}
+
+.kerning-section-eyebrow {
+  letter-spacing: 0.08em;
+}
+
+/* --------------------------------------------------------------------------
+   MICRO-INTERACTION SPECIFICATIONS
+   -------------------------------------------------------------------------- */
+
+/* Accent left indicator reveal */
+.micro-notch {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--accent);
+  transform: scaleY(0);
+  transform-origin: center;
+  transition: transform 0.22s var(--ease-spring);
+}
+
+.group-hover-notch:hover .micro-notch,
+.card-active .micro-notch {
+  transform: scaleY(1);
+}
+
+/* Micro arrow translate */
+.micro-arrow {
+  transition: transform 0.22s var(--ease-spring), color 0.2s ease;
+}
+
+.group-hover-arrow:hover .micro-arrow {
+  transform: translate(2px, -2px);
+  color: var(--accent);
+}
+
+/* Ripple / active click micro-scale */
+.micro-press {
+  transition: transform 0.2s var(--ease-spring), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.micro-press:active {
+  transform: translateY(0px) scale(0.99);
+}
+
+/* Subtle corner accent dot animation */
+@keyframes accent-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 1;
+    box-shadow: 0 0 12px rgba(240, 185, 11, 0.6);
+  }
+}
+
+.status-dot-pulse {
+  animation: accent-pulse 3s infinite var(--ease-spring);
+}

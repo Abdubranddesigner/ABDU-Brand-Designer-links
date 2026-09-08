@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <defs>
+    <radialGradient id="cardGlow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#1d222c" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#0c0e12" stop-opacity="1"/>
+    </radialGradient>
+  </defs>
+  
+  <!-- Canvas Background -->
+  <rect width="1200" height="630" fill="#0c0e12"/>
+  <rect width="1200" height="630" fill="url(#cardGlow)"/>
+
+  <!-- Subtle Architectural Border Frame -->
+  <rect x="40" y="40" width="1120" height="550" rx="24" fill="#161a22" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
+  
+  <!-- Top Accent Indicator Notch -->
+  <rect x="560" y="40" width="80" height="4" rx="2" fill="#f0b90b"/>
+
+  <!-- Central Brand Monogram -->
+  <g transform="translate(600, 180)">
+    <circle cx="0" cy="0" r="64" fill="#0c0e12" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+    <text x="0" y="24" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="64" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-0.05em">A</text>
+    <circle cx="46" cy="38" r="10" fill="#f0b90b" stroke="#0c0e12" stroke-width="3"/>
+  </g>
+
+  <!-- Name & Handle -->
+  <text x="600" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="52" font-weight="800" fill="#ffffff" text-anchor="middle" letter-spacing="-0.04em">ABDU</text>
+  <text x="600" y="345" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="24" font-weight="500" fill="#a3a3a3" text-anchor="middle" letter-spacing="-0.01em">@abdubranddesigner</text>
+  
+  <!-- Bio -->
+  <text x="600" y="395" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="22" font-weight="600" fill="#ffffff" text-anchor="middle">
+    I designed Brands that tell stories and solve problems
+  </text>
+  <text x="600" y="425" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="400" fill="#a3a3a3" text-anchor="middle">
+    • Brand Identity Design  •  UI/UX Design
+  </text>
+
+  <!-- Section Tags -->
+  <g transform="translate(600, 480)">
+    <!-- Portfolio -->
+    <rect x="-240" y="-18" width="140" height="36" rx="18" fill="#0c0e12" stroke="rgba(255,255,255,0.08)"/>
+    <text x="-170" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.08em">PORTFOLIO</text>
+
+    <!-- Social -->
+    <rect x="-70" y="-18" width="140" height="36" rx="18" fill="#0c0e12" stroke="rgba(255,255,255,0.08)"/>
+    <text x="0" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.08em">SOCIAL</text>
+
+    <!-- Contact -->
+    <rect x="100" y="-18" width="140" height="36" rx="18" fill="#0c0e12" stroke="rgba(240,185,11,0.4)"/>
+    <circle cx="120" cy="0" r="4" fill="#f0b90b"/>
+    <text x="175" y="6" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="700" fill="#ffffff" text-anchor="middle" letter-spacing="0.08em">CONTACT</text>
+  </g>
+</svg>

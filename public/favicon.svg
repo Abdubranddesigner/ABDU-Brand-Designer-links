@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="16" fill="#161a22"/>
+  <rect width="64" height="64" rx="16" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <!-- Crisp Architectural Lettermark 'A' -->
+  <path d="M32 14 L18 48 L25.5 48 L28.8 39.5 L35.2 39.5 L38.5 48 L46 48 Z M32 23 L34.2 33.5 L29.8 33.5 Z" fill="#ffffff"/>
+  <!-- Restrained Accent Dot -->
+  <circle cx="44" cy="18" r="4" fill="#f0b90b"/>
+</svg>

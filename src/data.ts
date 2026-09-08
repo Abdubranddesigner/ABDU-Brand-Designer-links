@@ -1,0 +1,650 @@
+import { LinkItem } from './types';
+
+export const LINKS_DATA: LinkItem[] = [
+  // Portfolio Group (1 link)
+  {
+    id: 'behance',
+    title: 'Behance Portfolio',
+    subtitle: 'Brand identity systems, typography & visual case studies',
+    url: 'https://behance.net/abdubranddesigner',
+    category: 'Portfolio',
+    icon: 'behance',
+    badge: 'Featured',
+    isExternal: true,
+  },
+
+  // Social Group (7 links)
+  {
+    id: 'linkedin',
+    title: 'LinkedIn',
+    subtitle: 'Professional updates, design leadership & network',
+    url: 'https://www.linkedin.com/in/abdu-brand-designer/',
+    category: 'Social',
+    icon: 'linkedin',
+    isExternal: true,
+  },
+  {
+    id: 'instagram',
+    title: 'Instagram',
+    subtitle: '@abdubranddesigner • Behind the scenes & visual craft',
+    url: 'https://instagram.com/abdubranddesigner',
+    category: 'Social',
+    icon: 'instagram',
+    isExternal: true,
+  },
+  {
+    id: 'x',
+    title: 'X (Twitter)',
+    subtitle: '@abdubranddesign • Design discourse & industry notes',
+    url: 'https://x.com/abdubranddesign',
+    category: 'Social',
+    icon: 'x',
+    isExternal: true,
+  },
+  {
+    id: 'youtube',
+    title: 'YouTube',
+    subtitle: '@abdubranddesigner • Brand walkthroughs & deep dives',
+    url: 'https://youtube.com/@abdubranddesigner',
+    category: 'Social',
+    icon: 'youtube',
+    isExternal: true,
+  },
+  {
+    id: 'tiktok',
+    title: 'TikTok',
+    subtitle: '@abdubranddesigner • Fast-paced design tips & breakdowns',
+    url: 'https://tiktok.com/@abdubranddesigner',
+    category: 'Social',
+    icon: 'tiktok',
+    isExternal: true,
+  },
+  {
+    id: 'facebook',
+    title: 'Facebook',
+    subtitle: 'Community page & official design announcements',
+    url: 'https://web.facebook.com/abdubranddesigner',
+    category: 'Social',
+    icon: 'facebook',
+    isExternal: true,
+  },
+  {
+    id: 'telegram',
+    title: 'Telegram Channel',
+    subtitle: '@abdubranddesigner • Design community & announcements',
+    url: 'https://t.me/abdubranddesigner',
+    category: 'Social',
+    icon: 'telegram',
+    isExternal: true,
+  },
+
+  // Direct Contact Group (2 links)
+  {
+    id: 'client-portal',
+    title: 'Telegram Contact',
+    subtitle: 'Direct support, active projects & inquiries',
+    url: 'https://t.me/Abdubranddesigner_Support',
+    category: 'Direct Contact',
+    icon: 'telegram',
+    badge: 'Direct',
+    isExternal: true,
+  },
+  {
+    id: 'whatsapp',
+    title: 'WhatsApp (Business Inquiries)',
+    subtitle: '+251 955 303 950 • Rapid consultation & booking',
+    url: 'https://wa.me/251955303950',
+    category: 'Direct Contact',
+    icon: 'whatsapp',
+    badge: 'Fastest',
+    isExternal: true,
+  },
+];
+
+export const CATEGORY_METADATA = {
+  Portfolio: {
+    title: 'Portfolio & Work',
+    label: 'Featured Showcase',
+    count: 1,
+  },
+  Social: {
+    title: 'Social & Media',
+    label: 'Channels & Community',
+    count: 7,
+  },
+  'Direct Contact': {
+    title: 'Direct Contact',
+    label: 'Client Portal & Inquiries',
+    count: 2,
+  },
+};
+
+export const STANDALONE_HTML_SOURCE = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABDU Brand Designer</title>
+  <meta name="description" content="Brand Identity System • UI/UX Interface • Web Design link hub for ABDU">
+  <meta name="theme-color" content="#0c0e12">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <meta property="og:title" content="ABDU Brand Designer">
+  <meta property="og:description" content="Brand Identity System • UI/UX Interface • Web Design link hub for ABDU">
+  <meta property="og:image" content="/og-image.svg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@abdubranddesign">
+  <style>
+    /* ==========================================================================
+       STRICT ARCHITECTURAL DESIGN TOKENS
+       Palette: Background #0c0e12 | Card #161a22 | Card Hover #1d222c | Accent #f0b90b
+       ========================================================================== */
+    :root {
+      --bg: #0c0e12;
+      --card-bg: #161a22;
+      --card-hover: #1d222c;
+      --accent: #f0b90b;
+      --text-primary: #ffffff;
+      --text-secondary: #a3a3a3;
+      --border-subtle: rgba(255, 255, 255, 0.06);
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --transition-smooth: all 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-stack);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 3.5rem 1.25rem 5rem;
+    }
+
+    .link-hub-container {
+      width: 100%;
+      max-width: 460px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 2.25rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       PROFILE ARCHITECTURE
+       -------------------------------------------------------------------------- */
+    .profile-header {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+
+    .avatar {
+      width: 104px;
+      height: 104px;
+      border-radius: 50%;
+      background: var(--card-bg);
+      border: 2px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      color: var(--text-primary);
+      box-shadow: 0 12px 32px -4px rgba(0, 0, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .status-badge {
+      position: absolute;
+      bottom: 2px;
+      right: 4px;
+      width: 14px;
+      height: 14px;
+      background-color: var(--accent);
+      border: 3px solid var(--bg);
+      border-radius: 50%;
+      box-shadow: 0 0 10px rgba(240, 185, 11, 0.4);
+    }
+
+    .name {
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 0.35rem;
+    }
+
+    .handle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.85rem;
+    }
+
+    .bio {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--text-secondary);
+      max-width: 380px;
+      padding: 0 0.5rem;
+    }
+
+    /* --------------------------------------------------------------------------
+       SECTIONS & MICRO-INTERACTIONS
+       -------------------------------------------------------------------------- */
+    .section-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 0.25rem;
+      margin-bottom: 0.15rem;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-secondary);
+    }
+
+    .section-count {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      opacity: 0.7;
+    }
+
+    .links-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .card-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 0.95rem 1.15rem;
+      text-decoration: none;
+      color: var(--text-primary);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .card-link.is-revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card-link {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* Accent micro-notch reveal on hover */
+    .card-link::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: var(--accent);
+      transform: scaleY(0);
+      transform-origin: center;
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .card-link:hover {
+      background-color: var(--card-hover);
+      border-color: rgba(240, 185, 11, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px -6px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(240, 185, 11, 0.15);
+    }
+
+    .card-link:hover::before {
+      transform: scaleY(1);
+    }
+
+    .card-link:active {
+      transform: translateY(0) scale(0.99);
+      transition-duration: 0.08s;
+    }
+
+    .card-link:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .card-left {
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-width: 0;
+    }
+
+    .card-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+    }
+
+    .card-link:hover .card-icon {
+      color: var(--text-primary);
+    }
+
+    .card-text {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .card-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      transition: color 0.2s ease;
+    }
+
+    .card-subtitle {
+      font-size: 0.775rem;
+      color: var(--text-secondary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 0.15rem;
+    }
+
+    .card-right {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-shrink: 0;
+      margin-left: 0.75rem;
+    }
+
+    .badge {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-secondary);
+      letter-spacing: 0.02em;
+    }
+
+    .arrow-icon {
+      width: 16px;
+      height: 16px;
+      color: var(--text-secondary);
+      transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s ease;
+    }
+
+    .card-link:hover .arrow-icon {
+      transform: translate(2px, -2px);
+      color: var(--accent);
+    }
+
+    /* --------------------------------------------------------------------------
+       FOOTER
+       -------------------------------------------------------------------------- */
+    .hub-footer {
+      text-align: center;
+      font-size: 0.775rem;
+      color: var(--text-secondary);
+      margin-top: 1rem;
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <main class="link-hub-container">
+    <!-- Profile Header -->
+    <header class="profile-header">
+      <div class="avatar-wrapper">
+        <div class="avatar">
+          <img src="me.jpg" alt="ABDU" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <span style="display:none; width:100%; height:100%; align-items:center; justify-content:center;">A</span>
+        </div>
+        <span class="status-badge" title="Active & Available"></span>
+      </div>
+      <h1 class="name">ABDU</h1>
+      <p class="handle">@abdubranddesigner</p>
+      <div class="bio">
+        <p style="color: #ffffff; font-weight: 500; margin-bottom: 4px;">I designed Brands that tell stories and solve problems</p>
+        <p style="font-size: 0.8rem; color: #a3a3a3;">• Brand Identity Design &nbsp;• UI/UX Design</p>
+      </div>
+    </header>
+
+    <!-- Category 1: Portfolio (1 link) -->
+    <section class="section-group">
+      <div class="section-header">
+        <h2 class="section-title">Portfolio</h2>
+        <span class="section-count">1 link</span>
+      </div>
+      <div class="links-list">
+        <a href="https://behance.net/abdubranddesigner" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg>
+            <div class="card-text">
+              <span class="card-title">Behance Portfolio</span>
+              <span class="card-subtitle">Brand identity systems, typography & visual cases</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="badge">Featured</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Category 2: Social (7 links) -->
+    <section class="section-group">
+      <div class="section-header">
+        <h2 class="section-title">Social</h2>
+        <span class="section-count">7 links</span>
+      </div>
+      <div class="links-list">
+        <a href="https://www.linkedin.com/in/abdu-brand-designer/" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            <div class="card-text">
+              <span class="card-title">LinkedIn</span>
+              <span class="card-subtitle">Professional network & design leadership</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://instagram.com/abdubranddesigner" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+            <div class="card-text">
+              <span class="card-title">Instagram</span>
+              <span class="card-subtitle">@abdubranddesigner • Visuals & process reels</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://x.com/abdubranddesign" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16m0-16L4 20"/></svg>
+            <div class="card-text">
+              <span class="card-title">X</span>
+              <span class="card-subtitle">@abdubranddesign • Design discourse & updates</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://youtube.com/@abdubranddesigner" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1 1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><polygon points="10 15 15 12 10 9 10 15"/></svg>
+            <div class="card-text">
+              <span class="card-title">YouTube</span>
+              <span class="card-subtitle">@abdubranddesigner • Long-form tutorials</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://tiktok.com/@abdubranddesigner" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/></svg>
+            <div class="card-text">
+              <span class="card-title">TikTok</span>
+              <span class="card-subtitle">@abdubranddesigner • Short-form design insights</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://web.facebook.com/abdubranddesigner" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            <div class="card-text">
+              <span class="card-title">Facebook</span>
+              <span class="card-subtitle">Community page & official updates</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://t.me/abdubranddesigner" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            <div class="card-text">
+              <span class="card-title">Telegram Channel</span>
+              <span class="card-subtitle">@abdubranddesigner • Design community & announcements</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Category 3: Direct Contact (2 links) -->
+    <section class="section-group">
+      <div class="section-header">
+        <h2 class="section-title">Direct Contact</h2>
+        <span class="section-count">2 links</span>
+      </div>
+      <div class="links-list">
+        <a href="https://t.me/Abdubranddesigner_Support" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+            <div class="card-text">
+              <span class="card-title">Telegram Contact</span>
+              <span class="card-subtitle">Direct support, active projects & inquiries</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="badge">Direct</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+        <a href="https://wa.me/251955303950" target="_blank" rel="noopener noreferrer" class="card-link">
+          <div class="card-left">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            <div class="card-text">
+              <span class="card-title">WhatsApp (Business Inquiries)</span>
+              <span class="card-subtitle">+251 955 303 950 • Quick direct consultation</span>
+            </div>
+          </div>
+          <div class="card-right">
+            <span class="badge">Fastest</span>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Semantic Footer -->
+    <footer class="hub-footer">
+      <p>© ABDU Brand Designer • All rights reserved</p>
+    </footer>
+  </main>
+
+  <!-- Intersection Observer Scroll Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.card-link');
+      if (!('IntersectionObserver' in window)) {
+        cards.forEach(c => c.classList.add('is-revealed'));
+        return;
+      }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.08,
+        rootMargin: '0px 0px -30px 0px'
+      });
+      cards.forEach((card, index) => {
+        card.style.transitionDelay = (index % 5) * 50 + 'ms';
+        observer.observe(card);
+      });
+    });
+  </script>
+</body>
+</html>`;
