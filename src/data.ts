@@ -128,6 +128,8 @@ export const STANDALONE_HTML_SOURCE = `<!DOCTYPE html>
   <meta name="description" content="Brand Identity System • UI/UX Interface • Web Design link hub for ABDU">
   <meta name="theme-color" content="#0c0e12">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" type="image/jpeg" href="me.jpg">
+  <link rel="apple-touch-icon" href="me.jpg">
   <meta property="og:title" content="ABDU Brand Designer">
   <meta property="og:description" content="Brand Identity System • UI/UX Interface • Web Design link hub for ABDU">
   <meta property="og:image" content="/og-image.svg">
@@ -1029,6 +1031,8 @@ export const STANDALONE_MODULAR_HTML = `<!DOCTYPE html>
   <meta name="description" content="Brand Identity System • UI/UX Interface • Web Design link hub for ABDU">
   <meta name="theme-color" content="#0c0e12">
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/jpeg" href="me.jpg">
+  <link rel="apple-touch-icon" href="me.jpg">
   <meta property="og:title" content="ABDU Brand Designer">
   <meta property="og:description" content="Brand Identity System • UI/UX Interface • Web Design link hub for ABDU">
   <meta property="og:image" content="og-image.svg">
