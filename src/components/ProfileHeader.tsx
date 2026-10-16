@@ -167,7 +167,7 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare }) => {
 
       {/* Name with tight kerning as requested */}
       <h1 className="text-2xl sm:text-3xl font-extrabold tracking-[-0.04em] text-[#ffffff] leading-tight mb-1">
-        ABDU
+        ABDU Brand Designer
       </h1>
 
       {/* Handle */}
