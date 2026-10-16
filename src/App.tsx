@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { ProfileHeader } from './components/ProfileHeader';
 import { LinkCard } from './components/LinkCard';
-import { CodeModal } from './components/CodeModal';
 import { Toast } from './components/Toast';
 import { LINKS_DATA, CATEGORY_METADATA } from './data';
 import { CategoryType } from './types';
 
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('All');
-  const [isCodeModalOpen, setIsCodeModalOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (message: string) => {
@@ -42,8 +40,9 @@ export default function App() {
     }
   };
 
-  const categories: Array<'Portfolio' | 'Social' | 'Direct Contact'> = [
+  const categories: Array<'Portfolio' | 'Shop' | 'Social' | 'Direct Contact'> = [
     'Portfolio',
+    'Shop',
     'Social',
     'Direct Contact',
   ];
@@ -58,34 +57,24 @@ export default function App() {
       {/* Toast Notification Container */}
       <Toast message={toastMessage} />
 
-      {/* Standalone Code Inspector Modal */}
-      <CodeModal
-        isOpen={isCodeModalOpen}
-        onClose={() => setIsCodeModalOpen(false)}
-        onShowToast={showToast}
-      />
-
       {/* Main Semantic Container - Mobile-first constrained layout */}
       <main className="w-full max-w-[480px] flex flex-col gap-7 mx-auto">
         {/* Profile Architecture Header */}
-        <ProfileHeader
-          onShare={handleShareProfile}
-          onViewCode={() => setIsCodeModalOpen(true)}
-        />
+        <ProfileHeader onShare={handleShareProfile} />
 
         {/* Minimal Category Filter Pill Bar */}
         <nav
           aria-label="Link categories"
           className="flex items-center justify-between p-1 rounded-xl bg-[#161a22] border border-white/5"
         >
-          {(['All', 'Portfolio', 'Social', 'Direct Contact'] as CategoryType[]).map((cat) => {
+          {(['All', 'Portfolio', 'Shop', 'Social', 'Direct Contact'] as CategoryType[]).map((cat) => {
             const isActive = selectedCategory === cat;
             return (
               <button
                 key={cat}
                 type="button"
                 onClick={() => setSelectedCategory(cat)}
-                className={`flex-1 py-1.5 px-2 text-[11px] sm:text-xs font-semibold rounded-lg transition-all duration-200 tracking-tight text-center ${
+                className={`flex-1 py-1.5 px-1.5 text-[11px] sm:text-xs font-semibold rounded-lg transition-all duration-200 tracking-tight text-center ${
                   isActive
                     ? 'bg-[#1d222c] text-[#ffffff] border border-white/10 shadow-sm'
                     : 'text-[#a3a3a3] hover:text-[#ffffff] hover:bg-white/[0.02]'
@@ -144,36 +133,10 @@ export default function App() {
         </div>
 
         {/* Semantic Footer */}
-        <footer className="pt-4 pb-8 flex flex-col items-center gap-3 border-t border-white/5 text-center">
-          <p className="text-xs text-[#a3a3a3] font-medium">
-            ABDU Brand Identity & Design System
+        <footer className="pt-6 pb-10 flex flex-col items-center justify-center border-t border-white/5 text-center">
+          <p className="text-xs text-[#a3a3a3] font-medium tracking-wide">
+            ABDU Brand Designer
           </p>
-          <div className="flex items-center gap-4 text-[11px] text-[#a3a3a3]/70">
-            <button
-              type="button"
-              onClick={() => setIsCodeModalOpen(true)}
-              className="hover:text-[#ffffff] hover:underline transition-colors"
-            >
-              Export Standalone Code
-            </button>
-            <span>•</span>
-            <a
-              href="/standalone.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-[#ffffff] hover:underline transition-colors"
-            >
-              Raw HTML File
-            </a>
-            <span>•</span>
-            <button
-              type="button"
-              onClick={handleShareProfile}
-              className="hover:text-[#ffffff] hover:underline transition-colors"
-            >
-              Share Hub
-            </button>
-          </div>
         </footer>
       </main>
     </div>

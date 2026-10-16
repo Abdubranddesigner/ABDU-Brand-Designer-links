@@ -3,10 +3,9 @@ import { ABDU_AVATAR_DATA_URL, ABDU_AVATAR_PATH } from '../avatarData';
 
 interface ProfileHeaderProps {
   onShare: () => void;
-  onViewCode: () => void;
 }
 
-export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare, onViewCode }) => {
+export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare }) => {
   const [avatarSrc, setAvatarSrc] = useState<string>(ABDU_AVATAR_DATA_URL || ABDU_AVATAR_PATH);
   const [hasImageError, setHasImageError] = useState<boolean>(false);
   const [isDragging, setIsDragging] = useState<boolean>(false);
@@ -107,23 +106,9 @@ export const ProfileHeader: React.FC<ProfileHeaderProps> = ({ onShare, onViewCod
         <div className="flex items-center gap-2">
           <button
             type="button"
-            onClick={onViewCode}
-            aria-label="View HTML, CSS and JavaScript Code"
-            title="Inspect, Copy & Download HTML, CSS and JavaScript"
-            className="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-medium text-[#a3a3a3] hover:text-[#ffffff] bg-[#161a22] hover:bg-[#1d222c] border border-white/5 hover:border-[#f0b90b]/30 rounded-lg transition-all duration-200 micro-press"
-          >
-            <svg className="w-3.5 h-3.5 text-[#f0b90b]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <polyline points="16 18 22 12 16 6" />
-              <polyline points="8 6 2 12 8 18" />
-            </svg>
-            <span>HTML • CSS • JS</span>
-          </button>
-
-          <button
-            type="button"
             onClick={onShare}
             aria-label="Share profile link"
-            title="Copy profile link"
+            title="Share profile link"
             className="p-1.5 text-[#a3a3a3] hover:text-[#ffffff] bg-[#161a22] hover:bg-[#1d222c] border border-white/5 hover:border-[#f0b90b]/30 rounded-lg transition-all duration-200 micro-press"
           >
             <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
