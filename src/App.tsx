@@ -5,14 +5,10 @@ import { Toast } from './components/Toast';
 import { LINKS_DATA, CATEGORY_METADATA } from './data';
 import { CategoryType } from './types';
 
-type DeviceMode = 'auto' | 'iphone' | 'tablet' | 'desktop';
-
 export default function App() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryType>('All');
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   const [layoutMode, setLayoutMode] = useState<'grid' | 'list'>('grid');
-  const [deviceMode, setDeviceMode] = useState<DeviceMode>('auto');
-  const [showDeviceSelector, setShowDeviceSelector] = useState(false);
   const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
@@ -48,6 +44,8 @@ export default function App() {
       if (navigator.clipboard) {
         await navigator.clipboard.writeText(url);
         showToast(`${title} link copied`);
+      } else {
+        showToast(`Link copied: ${title}`);
       }
     } catch {
       showToast(`Link copied: ${title}`);
@@ -66,128 +64,19 @@ export default function App() {
       ? categories
       : categories.filter((cat) => cat === selectedCategory);
 
-  // Dynamic container width based on device simulation mode or fluid auto
-  const getContainerWidthClass = () => {
-    switch (deviceMode) {
-      case 'iphone':
-        return 'max-w-[390px] border border-white/10 rounded-[32px] p-4 sm:p-5 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#0c0e12] my-4';
-      case 'tablet':
-        return 'max-w-[768px] border border-white/10 rounded-[24px] p-6 sm:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.8)] bg-[#0c0e12] my-4';
-      case 'desktop':
-        return 'max-w-5xl px-4';
-      case 'auto':
-      default:
-        return 'w-full max-w-lg md:max-w-3xl lg:max-w-4xl xl:max-w-5xl px-2 sm:px-0';
-    }
-  };
-
   return (
-    <div className="min-h-[100dvh] bg-[#0c0e12] text-[#ffffff] flex flex-col items-center justify-between py-5 sm:py-8 md:py-10 px-3 sm:px-6 md:px-8 relative safe-area-top safe-area-bottom safe-area-left safe-area-right selection:bg-[#f0b90b]/30 selection:text-white overflow-x-hidden">
+    <div className="min-h-[100dvh] bg-[#0c0e12] text-[#ffffff] flex flex-col items-center justify-between py-6 sm:py-9 md:py-12 px-3 sm:px-6 md:px-8 relative safe-area-top safe-area-bottom safe-area-left safe-area-right selection:bg-[#f0b90b]/30 selection:text-white overflow-x-hidden">
       {/* Toast Notification Container */}
       <Toast message={toastMessage} />
 
-      {/* Floating Device Mode / Responsive Simulation Bar */}
-      <aside aria-label="Responsive View Switcher" className="w-full max-w-5xl mb-4 sm:mb-6 flex flex-col items-center gap-2">
-        <div className="flex items-center gap-1.5 p-1 rounded-xl bg-[#161a22]/80 backdrop-blur-md border border-white/10 text-xs shadow-lg">
-          <button
-            type="button"
-            onClick={() => setShowDeviceSelector(!showDeviceSelector)}
-            className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-[#a3a3a3] hover:text-white transition-colors"
-            title="Toggle responsive screen tester"
-          >
-            <span className="w-2 h-2 rounded-full bg-[#f0b90b] inline-block animate-pulse" />
-            <span className="text-[11px] font-medium tracking-tight">Responsive View</span>
-            <svg
-              className={`w-3.5 h-3.5 transform transition-transform duration-200 ${
-                showDeviceSelector ? 'rotate-180' : ''
-              }`}
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="6 9 12 15 18 9" />
-            </svg>
-          </button>
-
-          {showDeviceSelector && (
-            <div className="flex items-center gap-1 pl-1 border-l border-white/10">
-              <button
-                type="button"
-                onClick={() => setDeviceMode('auto')}
-                className={`px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${
-                  deviceMode === 'auto'
-                    ? 'bg-[#1d222c] text-[#f0b90b] border border-[#f0b90b]/20 shadow-sm'
-                    : 'text-[#a3a3a3] hover:text-white'
-                }`}
-                title="Fluid auto responsive for current browser/screen"
-              >
-                Auto (Fluid)
-              </button>
-              <button
-                type="button"
-                onClick={() => setDeviceMode('iphone')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${
-                  deviceMode === 'iphone'
-                    ? 'bg-[#1d222c] text-[#f0b90b] border border-[#f0b90b]/20 shadow-sm'
-                    : 'text-[#a3a3a3] hover:text-white'
-                }`}
-                title="iPhone / Phone viewport (390px)"
-              >
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                  <line x1="12" y1="18" x2="12.01" y2="18" />
-                </svg>
-                <span>iPhone</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setDeviceMode('tablet')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${
-                  deviceMode === 'tablet'
-                    ? 'bg-[#1d222c] text-[#f0b90b] border border-[#f0b90b]/20 shadow-sm'
-                    : 'text-[#a3a3a3] hover:text-white'
-                }`}
-                title="Tablet / iPad viewport (768px)"
-              >
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="4" y="2" width="16" height="20" rx="2" ry="2" />
-                  <line x1="12" y1="18" x2="12.01" y2="18" />
-                </svg>
-                <span>Tablet</span>
-              </button>
-              <button
-                type="button"
-                onClick={() => setDeviceMode('desktop')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-semibold transition-all ${
-                  deviceMode === 'desktop'
-                    ? 'bg-[#1d222c] text-[#f0b90b] border border-[#f0b90b]/20 shadow-sm'
-                    : 'text-[#a3a3a3] hover:text-white'
-                }`}
-                title="Desktop widescreen layout"
-              >
-                <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
-                  <line x1="8" y1="21" x2="16" y2="21" />
-                  <line x1="12" y1="17" x2="12" y2="21" />
-                </svg>
-                <span>Desktop</span>
-              </button>
-            </div>
-          )}
-        </div>
-      </aside>
-
-      {/* Main Semantic Container - Horizontally & Vertically Responsive */}
-      <main className={`flex flex-col gap-6 sm:gap-7 md:gap-8 mx-auto transition-all duration-300 ${getContainerWidthClass()}`}>
+      {/* Main Semantic Container - Horizontally & Vertically Responsive across Desktop, Tablet, and Mobile */}
+      <main className="w-full max-w-lg md:max-w-3xl lg:max-w-4xl xl:max-w-5xl px-2 sm:px-0 flex flex-col gap-6 sm:gap-7 md:gap-8 mx-auto transition-all duration-300">
         {/* Profile Architecture Header */}
         <ProfileHeader onShare={handleShareProfile} />
 
         {/* Category Filter Pill Bar + Grid/List Switcher */}
         <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 w-full">
-          {/* Minimal Category Filter Pill Bar (Smooth touch horizontal scroll on narrow mobile, full flex on tablet/desktop) */}
+          {/* Minimal Category Filter Pill Bar */}
           <nav
             aria-label="Link categories"
             className="flex-1 flex items-center gap-1 sm:gap-1.5 p-1 rounded-xl bg-[#161a22] border border-white/5 overflow-x-auto no-scrollbar scroll-smooth"
@@ -293,7 +182,6 @@ export default function App() {
                   }
                 >
                   {links.map((link, idx) => {
-                    // When in grid layout and section has only 1 item (Portfolio, Shop), let it span 2 cols on tablet/desktop for featured presence
                     const isSingleHero = layoutMode === 'grid' && links.length === 1;
 
                     return (
